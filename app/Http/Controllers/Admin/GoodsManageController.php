@@ -4,19 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use DB;
 
-use App\Models\Users;
+use App\Models\User;
+use App\Models\Transaction;
 use App\Models\UserQuote;
-use App\Models\Business;
-use App\Models\Goods;
-use App\Models\GoodsImage;
 
-class QuoteOrderController extends Controller
+class GoodsManageController extends Controller
 {
     public function index(Request $request)
     {
-        return "Quote";
+        return "Goods";
     }
 
     public function create(Request $request)
@@ -30,6 +27,11 @@ class QuoteOrderController extends Controller
     }
 
     public function delete(Request $request)
+    {
+        return;
+    }
+
+    public function changeStatus(Request $request)
     {
         return;
     }
