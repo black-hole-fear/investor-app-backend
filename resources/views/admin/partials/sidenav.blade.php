@@ -209,7 +209,6 @@
                     </a>
                     <div class="sidebar-submenu {{ menuActive('admin.withdraw*', 2) }}">
                         <ul>
-
                             <li class="sidebar-menu-item {{ menuActive('admin.withdraw.method.*') }}">
                                 <a class="nav-link" href="{{ route('admin.withdraw.method.index') }}">
                                     <i class="menu-icon las la-dot-circle"></i>
@@ -251,6 +250,27 @@
 
                         </ul>
                     </div>
+                </li>
+
+                <li class="sidebar-menu-item {{ menuActive('admin.business*') }}">
+                    <a class="nav-link" href="{{ route('admin.business.index') }}">
+                        <i class="menu-icon la la-building-o"></i>
+                        <span class="menu-title">@lang('Business Management')</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-item {{ menuActive('admin.goods*') }}">
+                    <a class="nav-link" href="{{ route('admin.goods.index') }}">
+                        <i class="menu-icon la fab la-product-hunt"></i>
+                        <span class="menu-title">@lang('Goods Management')</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-menu-item {{ menuActive('admin.quotes*') }}">
+                    <a class="nav-link" href="{{ route('admin.quotes.index') }}">
+                        <i class="menu-icon las la-money-bill"></i>
+                        <span class="menu-title">@lang('Quote Orders')</span>
+                    </a>
                 </li>
 
                 <li class="sidebar-menu-item sidebar-dropdown">

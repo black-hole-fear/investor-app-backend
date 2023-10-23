@@ -134,6 +134,35 @@ Route::middleware('admin')->group(function () {
         });
     });
 
+    // Business Manage
+    Route::name('business.')->prefix('business')->group(function () {
+        Route::controller('BusinessManageController')->group(function () {
+            Route::get('/', 'getBusinessList')->name('index');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('edit/{id}', 'update')->name('update');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
+            Route::post('delete/{id}', 'delete')->name('delete');
+            Route::post('status/{id}', 'changeStatus')->name('status');
+        });
+    });
+
+    // Goods Manage
+    Route::name('goods.')->prefix('goods')->group(function () {
+        Route::controller('GoodsManageController')->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::post('status', 'changeStatus')->name('status');
+        
+        });
+    });
+
+    // User Quotes Management
+    Route::name('quotes.')->prefix('quotes')->group(function () {
+        Route::controller('QuoteOrderController')->group(function () {
+            Route::get('/', 'index')->name('index');
+        });
+    });
+
     // Report
     Route::controller('ReportController')->prefix('report')->name('report.')->group(function () {
         Route::get('transaction', 'transaction')->name('transaction');
