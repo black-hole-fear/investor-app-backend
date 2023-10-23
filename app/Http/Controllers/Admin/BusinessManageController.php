@@ -22,7 +22,32 @@ class BusinessManageController extends Controller
 
     public function create(Request $request)
     {
-        return;
+        $pageTitle = 'New Business Add';
+        return view('admin.business.create', compact('pageTitle'));
+    }
+
+    public function store(Request $request)
+    {
+        //validation is needed in this part
+        //
+        $business = new Business;
+        if ($request->file())
+        {
+            $file = $request->file('image');
+            $file_name = time().'_'.$request->image->getClientOriginalName();
+            $file->move(public_path('/assets/images/business'), $file_name);
+        }
+        
+        $business->name = $request->name;
+        $business->title = $request->title;
+        $business->details = $request->description;
+        $business->currency = $request->currency;
+        $business->quotes_unit_price = $request->rate;
+        $business->image_path = '/assets/images/business/'.$file_name;
+        $business->save();
+
+        $notify[] = ['success', 'Business is created successfully'];
+        return back()->withNotify($notify);
     }
 
     public function edit(Request $request) 
@@ -42,6 +67,6 @@ class BusinessManageController extends Controller
 
     public function changeStatus($id)
     {
-        Business::changeStatus($id);
+        return Business::changeStatus($id);
     }
 }

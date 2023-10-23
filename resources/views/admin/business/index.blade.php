@@ -23,9 +23,12 @@
                                         <td>{{ __($business->title) }}</td>
                                         <td class="fw-bold">{{ __($business->name) }}</td>
                                         <td class="fw-bold">
-                                            {{ __(Str::limit($business->details, 50)) }}
+                                            {{ __(Str::limit($business->details, 30)) }}
                                         </td>
                                         <td class="fw-bold">
+                                            <div class="text-center">
+                                                <img src="{{ asset($business->image_path) }}" class="rounded" alt="...">
+                                            </div>
                                         </td>
                                         <td class="fw-bold">
                                             {{ showAmount($business->quotes_unit_price) }} {{ __($general->cur_text) }}
@@ -45,7 +48,7 @@
                                                     @lang('Edit')
                                                 </a>
                                                 @if ($business->status == Status::ENABLE)
-                                                <button 
+                                                 <button 
                                                     class="btn btn-sm btn-outline--danger ms-1 confirmationBtn" 
                                                     data-question="@lang('Are you sure to disable this business?')" 
                                                     data-action="{{ route('admin.business.status', $business->id) }}"

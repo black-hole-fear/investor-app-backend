@@ -140,7 +140,8 @@ Route::middleware('admin')->group(function () {
             Route::get('/', 'getBusinessList')->name('index');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('edit/{id}', 'update')->name('update');
-            Route::post('create', 'create')->name('create');
+            Route::get('create', 'create')->name('create');
+            Route::post('store', 'store')->name('store');
             Route::post('delete/{id}', 'delete')->name('delete');
             Route::post('status/{id}', 'changeStatus')->name('status');
         });
