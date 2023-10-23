@@ -14,7 +14,7 @@
                                     <th>@lang('Ad Image')</th>
                                     <th>@lang('Quote Rate')</th>
                                     <th>@lang('Status')</th>
-                                    <th>@lang('Operation')</th>
+                                    <th>@lang('Action')</th>
                                 </tr>
                             </thead>
                             <tbody>

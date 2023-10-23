@@ -11,4 +11,9 @@ class Business extends Model
 {
     use HasFactory;
     use GlobalStatus;
+
+    public function getGoodsByBusiness()
+    {
+        return $this->hasMany(Good::class);
+    }
 }

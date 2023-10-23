@@ -151,6 +151,10 @@ Route::middleware('admin')->group(function () {
     Route::name('goods.')->prefix('goods')->group(function () {
         Route::controller('GoodsManageController')->group(function () {
             Route::get('/', 'index')->name('index');
+            Route::get('create', 'create')->name('create');
+            Route::post('create', 'store')->name('create');
+            Route::get('edit/{id}', 'edit')->name('edit');
+            Route::post('edit/{id}', 'update')->name('edit');
             Route::post('status', 'changeStatus')->name('status');
         
         });
