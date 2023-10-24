@@ -11,8 +11,8 @@
                                     <th>@lang('Business Name')</th>
                                     <th>@lang('Name')</th>
                                     <th>@lang('Title')</th>
+                                    <th>@lang('Description')</th>
                                     <th>@lang('Price')</th>
-                                    <th>@lang('')</th>
                                     <th>@lang('Status')</th>
                                     <th>@lang('Action')</th>
                                 </tr>
@@ -23,10 +23,12 @@
                                         <td>{{ $goods->getBusinessName->name }}</td>
                                         <td>{{ __($goods->name) }}</td>
                                         <td class="fw-bold">{{ __($goods->title) }}</td>
+                                        <td class="fw-bold"> 
+                                            {{ __(Str::limit($goods->details, 30)) }}
+                                        </td>
                                         <td class="fw-bold">
                                             {{ showAmount($goods->price) }} {{ __($general->cur_text) }} {{ 0 < $goods->rate ? ' + ' . showAmount($goods->rate) . ' %' : ' - ' . showAmount($goods->rate) . '%' }} 
                                         </td>
-                                        <td class="fw-bold"></td>
                                         <td>
                                             @php
                                                 echo $goods->statusBadge;

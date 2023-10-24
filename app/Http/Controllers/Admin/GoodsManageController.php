@@ -22,7 +22,8 @@ class GoodsManageController extends Controller
 
     public function create(Request $request)
     {
-        return;
+        $pageTitle = 'New Goods Create';
+        return view('admin.goods.create', compact('pageTitle'));
     }
 
     public function edit(Request $request) 
@@ -37,6 +38,12 @@ class GoodsManageController extends Controller
 
     public function changeStatus(Request $request)
     {
+        $id = $request->id;
         return Good::changeStatus($id);
+    }
+
+    public function getBusinessList(Request $request)
+    {
+        return;
     }
 }

@@ -155,8 +155,9 @@ Route::middleware('admin')->group(function () {
             Route::post('create', 'store')->name('create');
             Route::get('edit/{id}', 'edit')->name('edit');
             Route::post('edit/{id}', 'update')->name('edit');
-            Route::post('status', 'changeStatus')->name('status');
-        
+            Route::post('status/{id}', 'changeStatus')->name('status');
+            
+            Route::get('business', 'getBusinessList')->name('business');
         });
     });
 
