@@ -8,37 +8,41 @@
                         <table class="table--light style--two custom-data-table table">
                             <thead>
                                 <tr>
-                                    <th>@lang('Method')</th>
-                                    <th>@lang('Currency')</th>
-                                    <th>@lang('Charge')</th>
-                                    <th>@lang('Withdraw Limit')</th>
+                                    <th>@lang('Business Name')</th>
+                                    <th>@lang('Name')</th>
+                                    <th>@lang('Title')</th>
+                                    <th>@lang('Description')</th>
+                                    <th>@lang('Price')</th>
                                     <th>@lang('Status')</th>
                                     <th>@lang('Action')</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse($methods as $method)
+                                @forelse($goodsList as $goods)
                                     <tr>
-                                        <td>{{ __($method->name) }}</td>
-
-                                        <td class="fw-bold">{{ __($method->currency) }}</td>
-                                        <td class="fw-bold">{{ showAmount($method->fixed_charge) }} {{ __($general->cur_text) }} {{ 0 < $method->percent_charge ? ' + ' . showAmount($method->percent_charge) . ' %' : '' }} </td>
-                                        <td class="fw-bold">{{ $method->min_limit + 0 }}
-                                            - {{ $method->max_limit + 0 }} {{ __($general->cur_text) }}</td>
+                                        <td>{{ $goods->getBusinessName->name }}</td>
+                                        <td>{{ __($goods->name) }}</td>
+                                        <td class="fw-bold">{{ __($goods->title) }}</td>
+                                        <td class="fw-bold"> 
+                                            {{ __(Str::limit($goods->details, 30)) }}
+                                        </td>
+                                        <td class="fw-bold">
+                                            {{ showAmount($goods->price) }} {{ __($general->cur_text) }} {{ 0 < $goods->rate ? ' + ' . showAmount($goods->rate) . ' %' : ' - ' . showAmount($goods->rate) . '%' }} 
+                                        </td>
                                         <td>
                                             @php
-                                                echo $method->statusBadge;
+                                                echo $goods->statusBadge;
                                             @endphp
                                         </td>
                                         <td>
                                             <div class="button--group">
-                                                <a class="btn btn-sm btn-outline--primary ms-1" href="{{ route('admin.withdraw.method.edit', $method->id) }}"><i class="las la-pen"></i> @lang('Edit')</a>
-                                                @if ($method->status == Status::ENABLE)
-                                                    <button class="btn btn-sm btn-outline--danger ms-1 confirmationBtn" data-question="@lang('Are you sure to disable this method?')" data-action="{{ route('admin.withdraw.method.status', $method->id) }}">
+                                                <a class="btn btn-sm btn-outline--primary ms-1" href="{{ route('admin.goods.edit', $goods->id) }}"><i class="las la-pen"></i> @lang('Edit')</a>
+                                                @if ($goods->status == Status::ENABLE)
+                                                    <button class="btn btn-sm btn-outline--danger ms-1 confirmationBtn" data-question="@lang('Are you sure to disable this goods?')" data-action="{{ route('admin.goods.status', $goods->id) }}">
                                                         <i class="la la-eye-slash"></i> @lang('Disable')
                                                     </button>
                                                 @else
-                                                    <button class="btn btn-sm btn-outline--success ms-1 confirmationBtn" data-question="@lang('Are you sure to enable this method?')" data-action="{{ route('admin.withdraw.method.status', $method->id) }}">
+                                                    <button class="btn btn-sm btn-outline--success ms-1 confirmationBtn" data-question="@lang('Are you sure to enable this goods?')" data-action="{{ route('admin.goods.status', $goods->id) }}">
                                                         <i class="la la-eye"></i> @lang('Enable')
                                                     </button>
                                                 @endif
@@ -62,7 +66,7 @@
 @endsection
 
 @push('breadcrumb-plugins')
-    <a class="btn btn-outline--primary" href="{{ route('admin.withdraw.method.create') }}"><i class="las la-plus"></i>@lang('Add New')</a>
+    <a class="btn btn-outline--primary" href="{{ route('admin.goods.create') }}"><i class="las la-plus"></i>@lang('Add New')</a>
     <div class="d-inline">
         <div class="input-group w-auto">
             <input class="form-control bg--white" name="search_table" type="text" placeholder="@lang('Search')...">
