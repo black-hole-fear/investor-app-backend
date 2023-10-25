@@ -1,4 +1,11 @@
 @extends('admin.layouts.app')
+@push('style')
+<style>
+    .ad-img img {
+        width: 240px;
+    }
+</style>
+@endpush
 @section('panel')
     <div class="row">
         <div class="col-lg-12">
@@ -26,7 +33,7 @@
                                             {{ __(Str::limit($business->details, 30)) }}
                                         </td>
                                         <td class="fw-bold">
-                                            <div class="text-center">
+                                            <div class="text-center ad-img">
                                                 <img src="{{ asset($business->image_path) }}" class="rounded" alt="...">
                                             </div>
                                         </td>
